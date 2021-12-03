@@ -13,6 +13,7 @@ database.connect();
 
 const urlController = new URLController;
 
+api.get("/", () => { console.log("Please enter a short url to be searched.")});
 api.get("/:hash", urlController.redirect);
 api.post("/shorten", urlController.shorten);
 
