@@ -16,7 +16,6 @@ const urlController = new URLController;
 api.get("/:hash", urlController.redirect);
 api.post("/shorten", urlController.shorten);
 
-const port = process.env.PORT || process.env.LOCAL_PORT
-api.listen(port, () => {
-    console.log(`Listening at port ${port}`);
+api.listen(process.env.PORT || 3000, () => {
+    console.log("App online");
 })
