@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 import express from "express";
 import { MongoConnection } from "./database/MongoConnection";
 import { URLController } from "./controller/URLController";
@@ -14,6 +16,7 @@ const urlController = new URLController;
 api.get("/:hash", urlController.redirect);
 api.post("/shorten", urlController.shorten);
 
-api.listen(3000, () => {
-    console.log("Listening at port 3000");
+const port = process.env.PORT || process.env.LOCAL_PORT
+api.listen(port, () => {
+    console.log(`Listening at port ${port}`);
 })
