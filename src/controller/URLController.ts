@@ -5,16 +5,30 @@ import { config } from "../config/Constants";
 
 export class URLController {
   public async shorten(req: Request, res: Response): Promise<void> {
-    const { originURL } = req.body;
+    const { originURL, alternativeURL } = req.body;
+
+    if (!originURL) {
+      res.json({ error: "Please enter an url to be shortened."});
+      return;
+    }
+
     const url = await URLModel.findOne({ originURL });
+
     if (url) {
       res.json(url);
       return;
     }
 
-    const hash = shortId.generate();
+    if (alternativeURL) {
+      const altURL = await URLModel.findOne({ alternativeURL });
+      if (altURL) {
+        res.json("The provided alternative url is already in use. Please choose another one.");
+        return;
+      }
+    }
+    const hash = alternativeURL ? alternativeURL : shortId.generate();
     const shortURL = `${config.API_URL}/${hash}`;
-    const newURL = await URLModel.create({ hash, shortURL, originURL });
+    const newURL = await URLModel.create({ hash, shortURL, originURL, alternativeURL });
 
     res.json(newURL);
   }  

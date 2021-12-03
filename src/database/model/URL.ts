@@ -2,13 +2,16 @@ import { prop, getModelForClass } from "@typegoose/typegoose";
 
 export class URL {
     @prop({ required: true })
-    hash: string
+    hash: string;
 
     @prop({ required: true })
-    originURL: string
+    originURL: string;
 
     @prop({ required: true })
-    shortURL: string
+    shortURL: string;
+
+    @prop()
+    alternativeURL: string;
 }
 
 export const URLModel = getModelForClass(URL);
