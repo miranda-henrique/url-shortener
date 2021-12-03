@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-import express from "express";
+import express, { Request, Response } from "express";
 import { MongoConnection } from "./database/MongoConnection";
 import { URLController } from "./controller/URLController";
 
@@ -13,7 +13,7 @@ database.connect();
 
 const urlController = new URLController;
 
-api.get("/", () => { console.log("Please enter a short url to be searched.")});
+api.get("/", (req: Request, res: Response) => res.json({ error: "Please enter a short url to be searched."}));
 api.get("/:hash", urlController.redirect);
 api.post("/shorten", urlController.shorten);
 
