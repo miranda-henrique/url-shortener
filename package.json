@@ -28,5 +28,6 @@
     "@types/express": "^4.17.13",
     "@types/mongoose": "^5.11.97",
     "@types/shortid": "^0.0.29"
-  }
+  },
+  "heroku-run-build-script": true
 }
