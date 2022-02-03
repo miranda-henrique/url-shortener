@@ -4,7 +4,7 @@ URL shortening API built for [DIO](https://www.dio.me/sign-in)'s fullstack javas
 ### Short URL
 `POST /shorten`
 
-#### Parameters:
+#### Body:
 ##### Required:
 - originURL: URL to be shortened
 ##### Optional:
